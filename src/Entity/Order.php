@@ -18,7 +18,7 @@ class Order
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $paiedPrice = null;
+    private ?string $paidPrice = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -26,7 +26,7 @@ class Order
     /**
      * @var Collection<int, OrderLine>
      */
-    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'orderGoodies', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'orderGoodies', cascade: ['persist'], orphanRemoval: true)]
     private Collection $orderLines;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
@@ -43,14 +43,14 @@ class Order
         return $this->id;
     }
 
-    public function getPaiedPrice(): ?string
+    public function getPaidPrice(): ?string
     {
-        return $this->paiedPrice;
+        return $this->paidPrice;
     }
 
-    public function setPaiedPrice(string $paiedPrice): static
+    public function setPaidPrice(string $paidPrice): static
     {
-        $this->paiedPrice = $paiedPrice;
+        $this->paidPrice = $paidPrice;
 
         return $this;
     }
