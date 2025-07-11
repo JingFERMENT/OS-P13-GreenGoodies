@@ -31,12 +31,13 @@
 				class="navbar">
 				{# logo and navigation #}
 				<div class="logo">
-					<a href="">
+					<a href="{{path('app_home')}}">
+						{# logo image #}
 						<img src="{{ asset('img/logo.svg') }}" alt="GreenGoodies Logo">
 					</a>
 				</div>
 				<nav class="nav-links">
-					<a href="#">Nos produits</a>
+					<a href="#products">Nos produits</a>
 					<a href="#">Mon panier</a>
 					<a href="#">Mon compte</a>
 					<a href="#">Déconnexion</a>
@@ -46,9 +47,6 @@
 
 		{# main content #}
 		{% block main %}
-			<main>
-				{% block content %}{% endblock %}
-			</main>
 		{% endblock %}
 
 		{# footer #}

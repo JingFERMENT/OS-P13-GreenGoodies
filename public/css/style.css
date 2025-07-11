@@ -8,9 +8,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 30px 120px;
     background-color: #FFFDF7;
     border: 1px solid #f6f5f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
 }
 
 .nav-links a {
@@ -84,25 +89,28 @@ h3 {
 .product-card {
     width: calc(33.333%); 
     box-sizing: border-box;
+    background-color: #f6f5f0;
+    height: 692px;
 }
 
 .product-info {
     padding: 30px;
-    background-color: #f6f5f0;
+   
     text-align: center;
 }
 .product-image {
-    width: 100%;        
-    max-height: 474px;       
+    width: 100%; 
+    max-height: 474px;             
     object-fit: cover;
+    height: 90%;
 }
 
 .product-info .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 20px 20px;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 20px;
     color: #000;
 }
 
@@ -150,7 +158,7 @@ h3 {
 .section-image {
     max-width: 487px;
 	max-width: 33%;
-	height: auto;
+    height: 80%;
 	object-fit: cover;
 }
 
@@ -166,10 +174,72 @@ h3 {
 	margin-bottom: 20px;
 }
 
+.product-details-block {
+    display: flex;
+    flex-direction: row;
+    max-height: 686px;
+    padding-bottom: 80px;
+}
+
+.product-details-block h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.product-details-block h3 {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.product-unit-price {
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 0;
+}
+
+.product-details-image {
+    width: 50%;          
+    object-fit:cover;
+}
+
+.product-details{
+    width: 50%;
+    padding: 110px 110px 0px 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+.product-texts {
+    display: flex;
+    flex-direction: column;
+}
+
+.long-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.add-to-cart{
+    display: inline-block;
+    padding: 30px 20px;
+    text-decoration: none;
+    margin-top: 20px;
+    background-color: #000;
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-cart:hover{
+    background-color: #565656;
+}
+
 footer p {
     margin: 0;
     text-align: right;
-    padding: 30px 40px;
+    padding: 30px 120px;
     background-color: #fff;
     border: 1px solid #f6f5f0;
 }
