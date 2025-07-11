@@ -5,6 +5,7 @@
 
 {% block main %}
 	<main>
+		{# section welcome #}
 		<section class="welcome-block">
 			<div class="welcome-left">
 				<div class="welcome-text-wrapper">
@@ -15,33 +16,57 @@
 			</div>
 			<img src="{{ asset('img/Welcome.jpg') }}" alt="Green Goodies" class="welcome-block-image">
 		</section>
-
+		{# section products #}
 		<section class="products-block">
 			<h2>Nos produits</h2>
 			<div class="products-list">
-				
-					<div class="product-card">
-						<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+				<div class="product-card">
+					<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+					<div class="product-info">
 						<h3>Kit d'hygiène recyclable</h3>
-						<p>Pour une salle de bain éco-friendly</p>
+						<p class="short-description">Pour une salle de bain éco-friendly</p>
 						<p class="price">24,99€</p>
 						<a href="" class="btn">Voir le produit</a>
 					</div>
-					<div class="product-card">
-						<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+				</div>
+				<div class="product-card">
+					<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+					<div class="product-info">
 						<h3>Kit d'hygiène recyclable</h3>
-						<p>Pour une salle de bain éco-friendly</p>
+						<p class="short-description">Pour une salle de bain éco-friendly</p>
 						<p class="price">24,99€</p>
 						<a href="" class="btn">Voir le produit</a>
 					</div>
-					<div class="product-card">
-						<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+				</div>
+				<div class="product-card">
+					<img src="/img/Recyclable_Hygiene_Kit.jpg" alt="Kit d'hygiène recyclable" class="product-image">
+					<div class="product-info">
 						<h3>Kit d'hygiène recyclable</h3>
-						<p>Pour une salle de bain éco-friendly</p>
+						<p class="short-description">Pour une salle de bain éco-friendly</p>
 						<p class="price">24,99€</p>
 						<a href="" class="btn">Voir le produit</a>
 					</div>
-				
+				</div>
+			</div>
+		</section>
+		
+		{# section conviction #}
+		<section class="conviction-block">
+			<div class="section-texts">
+				<h2>Notre conviction</h2>
+				<p>Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique</p>
+			</div>
+			<img src="{{ asset('img/Conviction_Hero_Cover.jpg') }}" alt="Notre conviction" class="section-image">
+		</section>
+
+		{# section value #}
+		<section class="value-block">
+			<img src="{{ asset('img/Value_Hero_Cover.jpg') }}" alt="Notre valeur" class="section-image">
+			<div class="section-texts">
+				<h2>NOS VALEURS</h2>
+				<p>Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.</p>
+				<p>Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.</p>
+				<p>Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.</p>
 			</div>
 		</section>
 	</main>
