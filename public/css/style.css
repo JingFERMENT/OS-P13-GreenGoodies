@@ -236,6 +236,33 @@ h3 {
     background-color: #565656;
 }
 
+.Inscription-hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.Inscription-hero h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.Inscription-hero-cover {
+    width: 50%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.Inscription-hero-text {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 footer p {
     margin: 0;
     text-align: right;

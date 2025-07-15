@@ -1,19 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
+{% block main %}
+	<section class="Inscription-hero">
+		<img src="{{ asset('img/Inscription-hero-cover.jpg') }}" alt="Les feuilles vertes, l'image inscription de Greengoodies" class="Inscription-hero-cover">
+		<div class="Inscription-hero-text">
+			<h1>Inscription</h1>
+			<span>Tous les champs sont obligatoires.</span>
+			{{ form_errors(registrationForm) }}
 
-    {{ form_errors(registrationForm) }}
+			{{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.firstname) }}
+			{{ form_row(registrationForm.email) }}
+			{{ form_row(registrationForm.plainPassword, {
+            label: 'Password'}) }}
+			{{ form_row(registrationForm.agreeTerms) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+			<button type="submit" class="btn">S'inscrire</button>
+			{{ form_end(registrationForm) }}
+            <a><span>Déjà un compte ? Se connecter</span></a>
+		</div>
+	</section>
 {% endblock %}
