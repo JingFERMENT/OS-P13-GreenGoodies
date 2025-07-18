@@ -239,28 +239,131 @@ h3 {
 .Inscription-hero {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-}
-
-.Inscription-hero h1 {
-    font-size: 20px;
-    font-weight: 500;
 }
 
 .Inscription-hero-cover {
     width: 50%;
-    height: 100vh;
+    max-height: 1104px;
     object-fit: cover;
 }
 
 .Inscription-hero-text {
     width: 50%;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 50px;
+}
+
+.Inscription-hero-text h1 {
+    font-size: 20px;
+    font-weight: 500; 
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.inscription-criteria {
+    font-size: 12px;
+    color: #666;
+}
+
+.checkbox-inline label {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.Inscription-hero {
+    background-color: #FFFDF7;
+}
+
+.form-wrapper {
+    max-width: 480px;
+    width: 98%;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form .form-field {
+    margin-bottom: 20px;
+}
+
+form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom:20px;
+}
+
+form .form-group input {
+    padding: 23px;
+    border: 1px solid #666;
+    background-color: #FFFDF7;
+}
+
+form .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+
+.checkbox-inline {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    margin: 30px 0 30px 0;
+    color: #666;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #666;
+    margin :0px;
+}
+
+.btn-register {
+    padding: 30px 30px; 
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: #565656;
+    color: #FFF;
+    width: 100%;
+    font-size: 14px;
+}
+
+form .btn-register:hover {
+    background-color: #000;
+}
+
+form ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    color: #e53935;
+}
+
+form ul li{
+    margin: 0;
+}
+
+.login-link {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    margin-top: 30px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #e53935;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 footer p {
