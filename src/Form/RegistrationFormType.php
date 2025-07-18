@@ -28,12 +28,12 @@ class RegistrationFormType extends AbstractType
             ->add('email', TextType::class, [
                 'label' => 'Adresse email',
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
+            ->add('isAcceptedCGU', CheckboxType::class, [
+                'mapped' => true,
                 'label' => 'J’accepte les CGU de GreenGoodies',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Nous vous invitons à accepter nos conditions.',
+                        'message' => 'Veuillez accpeter nos conditions générales.',
                     ]),
                 ],
             ])

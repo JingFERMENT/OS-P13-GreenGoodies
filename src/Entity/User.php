@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -21,12 +22,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: "Le prénom est obligatoire."
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le prénom doit avoir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas dépasser {{ limit }} caractères. "
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: "Le nom est obligatoire."
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le nom doit avoir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères. "
+    )]
+    #[Assert\Regex(
+        pattern: "/^[A-Z][a-zA-Z'-]+$/",
+        message: "Le nom ne doit contenir que des lettres et commence par un majuscule."
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 180)]
+     #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Email(
+        message: "Votre email '{{ value }}' est invalide",
+        mode: "strict"
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas dépasser {{ limit }} caractères. "
+    )]
     private ?string $email = null;
 
     /**
@@ -42,10 +74,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
-    private ?bool $isAcceptedCGU = null;
+    private bool $isAcceptedCGU = false;
 
     #[ORM\Column]
-    private ?bool $isActivatedAPI = null;
+    private bool $isActivatedAPI = false;
 
      /**
      * @var Collection<int, Order>
@@ -162,7 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // @deprecated, to be removed when upgrading to Symfony 8
     }
 
-    public function isAcceptedCGU(): ?bool
+    public function isAcceptedCGU(): bool
     {
         return $this->isAcceptedCGU;
     }
@@ -174,7 +206,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isActivatedAPI(): ?bool
+    public function isActivatedAPI(): bool
     {
         return $this->isActivatedAPI;
     }

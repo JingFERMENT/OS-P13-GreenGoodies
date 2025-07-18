@@ -315,7 +315,7 @@ form .form-group label {
     justify-content: flex-start;
     align-items: center;
     font-size: 14px;
-    margin: 30px 0 30px 0;
+    margin: 30px 0 0px 0;
     color: #666;
 }
 
@@ -340,14 +340,14 @@ form .btn-register:hover {
     background-color: #000;
 }
 
-form ul {
+.form-wrapper ul {
     list-style: none;
     padding: 0;
     margin-top: 10px;
     color: #e53935;
 }
 
-form ul li{
+.form-wrapper ul li{
     margin: 0;
 }
 
