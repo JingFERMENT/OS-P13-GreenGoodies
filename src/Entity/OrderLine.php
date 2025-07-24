@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderLineRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderLineRepository::class)]
 class OrderLine
@@ -14,6 +15,7 @@ class OrderLine
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Range(min: 0, max: 10)]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderLines')]

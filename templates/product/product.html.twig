@@ -15,8 +15,31 @@
 					€</p>
 				<h3>Description</h3>
 				<p class="long-description">{{ product.longDescription|nl2br }}</p>
+				<form action="{{ path('app_add_to_cart', {id: product.id}) }}" method="post" class="quantity-form">
+					<div class="quantity-block">
+						<label for="quantity">Quantité :</label>
+						<select name="quantity" id="quantity" class="quantity-dropdown" required>
+						
+							{% for i in quantityOptions %}
+								<option value="{{ i }}"
+								{% if cart[product.id] is defined and cart[product.id] == i %}selected{% endif %} 
+								{% if i == 0 %}disabled{% endif %}	
+								>{{ i }}</option>
+								{{ i }}
+							</option>
+							{% endfor %}
+						</select>
+					</div>
+					<button type="submit" class="add-to-cart">
+					{% if cart[product.id] is defined %}
+						Mettre à jour le panier
+					{% else %}
+						Ajouter au panier
+					{% endif %}
+					</button>
+				</form>
 			</div>
-			<a href="" class="add-to-cart">Ajouter au panier</a>
-		</div>
+		</div>	
 	</section>
 {% endblock %}
+

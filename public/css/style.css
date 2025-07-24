@@ -203,16 +203,38 @@ h3 {
 }
 
 .product-details{
-    width: 50%;
     padding: 110px 110px 0px 110px;
     display: flex;
-    flex-direction: column;
-    justify-content:space-between;
 }
 
 .product-texts {
     display: flex;
     flex-direction: column;
+}
+
+.quantity-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    
+}
+
+.quantity-form label {
+    color: #666;
+}
+
+.quantity-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0;
+    gap:5px; 
+}
+
+.quantity-dropdown {
+    padding: 5px 30px;
+    border: 1px solid #333;
+    font-size: 14px; 
 }
 
 .long-description {
@@ -287,7 +309,7 @@ h3 {
     width: 98%;
 }
 
-form {
+.registration-form {
     margin-top: 20px;
 }
 
@@ -399,6 +421,14 @@ form .btn-register:hover {
 
 .connexion-hero-text .form-group {
     margin-top: 30px;
+}
+
+/* my order */
+
+.my-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 footer p {

@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block main %}
 	<section class="Inscription-hero">
@@ -11,7 +12,9 @@
 				<span class="inscription-criteria">Tous les champs sont obligatoires.</span>
 
 				{{ form_errors(registrationForm) }}
-				{{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+				{{ form_start(registrationForm, {'attr': 
+					{'novalidate': 'novalidate',
+					'class': 'registration-form'}}) }}
 				<div class="form-group">
 					{{ form_label(registrationForm.lastname) }}
 					{{ form_widget(registrationForm.lastname) }}
@@ -44,15 +47,15 @@
 
 				<div>
 					<div class="checkbox-inline">
-					{{ form_widget(registrationForm.isAcceptedCGU, {'attr': {'class': 'custom-checkbox'}}) }}
-					{{ form_label(registrationForm.isAcceptedCGU) }}	
+						{{ form_widget(registrationForm.isAcceptedCGU, {'attr': {'class': 'custom-checkbox'}}) }}
+						{{ form_label(registrationForm.isAcceptedCGU) }}
 					</div>
 					{{ form_errors(registrationForm.isAcceptedCGU) }}
 				</div>
 
 				<button type="submit" class="btn-register form-group">S'inscrire</button>
 				{{ form_end(registrationForm) }}
-				<a class="login-link" href = {{ path('app_login') }}>
+				<a class="login-link" href={{ path('app_login') }}>
 					<span>Déjà un compte ? Se connecter</span>
 				</a>
 			</div>
