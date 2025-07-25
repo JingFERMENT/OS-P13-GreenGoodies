@@ -38,7 +38,7 @@
 				</div>
 				<nav class="nav-links">
 					<a href="{{ path('app_home') }}#products">Nos produits</a>
-					<a href="#">Mon panier</a>
+					<a href="{{ path('app_cart') }}">Mon panier</a>
 					<a href="#">Mon compte</a>
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					{# if user is authenticated #}
@@ -52,6 +52,14 @@
 			</header>
 		{% endblock %}
 
+		{% for label, messages in app.flashes %}
+			<div class="flash-message {{ label }}">
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endfor %}
+		
 		{# main content #}
 		{% block main %}
 		{% endblock %}
