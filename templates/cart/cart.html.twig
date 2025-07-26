@@ -6,15 +6,16 @@
 {% block main %}
 	<section class="my-cart">
 		<h1>Mon panier</h1>
-		
-		{% if cartDetails is not empty %}
+		{% set cartWithQuantity = cartDetails|filter(cart => cart.quantity > 0) %}
 		<div class="cart-header">
-			<div class="empty-cart">
-				<a href="{{path('app_clear_cart')}}">x</a>
-				<span>Vider le panier</span>
-			</div>
-			{% for oneCart in cartDetails %}
-			 {% if oneCart.quantity > 0 %}
+			{% if cartWithQuantity is not empty %}
+				<div class="empty-cart">
+					<a href="{{path('app_clear_cart')}}">x</a>
+					<span>Vider le panier</span>
+				</div>
+			{% endif %}
+
+			{% for oneCart in cartWithQuantity %}
 				<div class="cart-product">
 					<img class="cart-image" src="{{ asset('img/'~oneCart['product'].picture)}}" alt="">
 					<div class="product-resume">
@@ -24,21 +25,21 @@
 						<p class="product-price">{{oneCart.totalPriceOfOneProduct|number_format(2, ',', ' ')}}€</p>
 					</div>
 				</div>
-			{% endif %}
 			{% endfor %}
 		</div>
 
-		<div class="cart-body">
-			<h3>Total panier :
-				<span>{{totalPrice|number_format(2, ',', ' ')}}€</span>
-			</h3>
-			<p>Frais de livraison : Offert</p>
-		</div>
-		<div class="cart-footer">
-			<a href="{{path('app_validate_cart')}}" class="validate-order">Valider la commande</a>
-		</div>
+		{% if cartWithQuantity is not empty %}
+			<div class="cart-body">
+				<h3>Total panier :
+					<span>{{totalPrice|number_format(2, ',', ' ')}}€</span>
+				</h3>
+				<p>Frais de livraison : Offert</p>
+			</div>
+			<div class="cart-footer">
+				<a href="{{path('app_validate_cart')}}" class="validate-order">Valider la commande</a>
+			</div>
 		{% else %}
-		  <p class="cart-is-empty-text">Votre panier est vide.</p>
+			<p class="cart-is-empty-text">Votre panier est vide.</p>
 		{% endif %}
 	</section>
 {% endblock %}
