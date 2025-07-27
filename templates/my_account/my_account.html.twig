@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block main %}
+
 	<section class="my-account">
 		<h1>Mon compte</h1>
 		{# Mes commandes #}
@@ -35,12 +36,11 @@
 		{# Mes accès API #}
 		<div class="my-access-API">
 			<h2>Mon accès API</h2>
-			<button class="add-to-cart">Activer mon accès API</button>
+			<a href="#" class="add-to-cart">Activer mon accès API</a>
 		</div>
 
 		<div class="delete-my-account">
-			<button class="add-to-cart">Supprimer mon compte</button>
+			<a href="{{ path('app_delete_my_account') }}" class="add-to-cart">Supprimer mon compte</a>
 		</div>
-		{# Suppression du compte #}
 	</section>
 {% endblock %}

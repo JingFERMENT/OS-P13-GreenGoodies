@@ -15,9 +15,11 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class CartController extends AbstractController
 {
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/cart', name: 'app_cart')]
     public function showCart(CartService $cartService, ProductRepository $productRepository): Response
     {
@@ -31,6 +33,7 @@ final class CartController extends AbstractController
         ]);
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/clear-cart', name: 'app_clear_cart')]
     public function clearCart(CartService $cartService): Response
     {
@@ -38,9 +41,9 @@ final class CartController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/validate-cart', name: 'app_validate_cart')]
     public function validateCart(
-        Request $request,
         CartService
         $cartService,
         ProductRepository $productrepository,

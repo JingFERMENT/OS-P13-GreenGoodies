@@ -462,9 +462,9 @@ form .btn-register:hover {
 
 .cart-image {
     width: 100%;
-    max-width: 142px;
-    max-height: 132.71px;
-    object-fit: cover;
+    width: 142px;
+    height: 133px;
+    object-fit:cover;
 }
 
 
@@ -587,7 +587,7 @@ form .btn-register:hover {
 /* my order */
 .my-order{
     background-color: #FFFDF7;
-    max-width: 504px;
+    width: 504px;
     padding: 50px 50px 40px 50px;
     margin: 0 auto;
     text-align: left;
@@ -644,15 +644,13 @@ td {
 
 /* my API */
 .my-access-API, .delete-my-account {
+    display:flex;
+    flex-direction: column;
     background-color: #FFFDF7;
     width: 504px;
     margin-top: 20px;
     text-align: left;
     padding: 50px;  
-}
-
-.my-access-API button, .delete-my-account button {
-    width : 100%;
 }
 
 footer p {
