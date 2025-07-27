@@ -79,9 +79,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isActivatedAPI = false;
 
-    #[ORM\Column]
-    private bool $isDeleted = false;
-
      /**
      * @var Collection<int, Order>
      */
@@ -91,19 +88,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->orders = new ArrayCollection();
-    }
-
-    public function getIsDeleted(): bool
-    {
-        return $this->isDeleted;
-    }
-
-    public function setIsDeleted(bool $isDeleted): static
-    {
-        $this->isDeleted = $isDeleted;
-
-        return $this;
-        
     }
 
     public function getId(): ?int
