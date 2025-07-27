@@ -8,6 +8,7 @@
 		<h1>Mon compte</h1>
 		<div class="my-order">
 			<h2>Mes commandes</h2>
+			{% if orders is defined and orders is not empty %}
 			<table class="my-order-table">
 				<thead>
 					<tr>
@@ -17,21 +18,16 @@
 					</tr>
 				</thead>
 				<tbody>
+				{% for order in orders %}
 					<tr>
-						<td>01</td>
-						<td>01/01/2024</td>
-						<td>185,50€</td>
+						<td>{{order.id}}</td>
+						<td>{{order.createdAt|date('d/m/Y')}}</td>
+						<td>{{order.paidPrice|number_format(2, ',', ' ')}}€</td>
 					</tr>
-					<tr>
-						<td>01</td>
-						<td>01/01/2024</td>
-						<td>185,50€</td>
-					</tr>
-					<tr>
-						<td>01</td>
-						<td>01/01/2024</td>
-						<td>185,50€</td>
-					</tr>
+				{% endfor %}
+				{% else %}
+				<p>Votre commande est vide.</p>
+				{% endif %}
 				</tbody>
 			</table>
 		</div>

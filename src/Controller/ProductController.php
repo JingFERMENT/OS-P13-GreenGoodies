@@ -35,8 +35,6 @@ final class ProductController extends AbstractController
             return $this->redirectToRoute('app_cart');
         }
 
-
-
         return $this->render('product/product.html.twig', [
             'product' => $product,
             'cart' => $cart,

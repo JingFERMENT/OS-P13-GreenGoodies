@@ -561,7 +561,6 @@ form .btn-register:hover {
     padding: 10px;
     border: 1px solid #c3e6cb;
     border-radius: 4px;
-    margin-bottom: 15px;
     text-align: center;
 }
 
@@ -589,7 +588,7 @@ form .btn-register:hover {
 .my-order {
     background-color: #FFFDF7;
     max-width: 504px;
-    padding: 50px;
+    padding: 50px 50px 40px 50px;
     margin: 0 auto;
     text-align: left;
 }
@@ -603,6 +602,7 @@ form .btn-register:hover {
     width: 100%;
     /* aucun espacement horizontal entre les colonnes. 
     20 pixels d'espacement vertical entre les lignes.*/
+    border-collapse: separate;
     border-spacing: 0 20px;
     /* la largeur des colonnes est fixée dès le départ 
     (basée sur la largeur totale du tableau) 
@@ -639,6 +639,7 @@ td {
 
 table tbody tr:last-of-type td{
     border-bottom: none;
+    padding-bottom: 0px;
 }
 
 footer p {
