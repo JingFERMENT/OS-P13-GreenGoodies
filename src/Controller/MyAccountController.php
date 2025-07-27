@@ -11,6 +11,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class MyAccountController extends AbstractController
@@ -34,25 +35,34 @@ final class MyAccountController extends AbstractController
     public function deleteAccount(
         Request $request,
         Security $security,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        TokenStorageInterface $tokenStorage
     ): Response {
-        
+
+        // delete the user
         $user = $security->getUser();
         $entityManager->remove($user);
 
-       
+        // delete the orders and orderlines
+        $orders = $user->getOrders();
 
-
-
-        // supprimer l'ordre 
-
-        
-
+        foreach ($orders as $order) {
+            foreach ($order->getOrderlines() as $oneOrderLine) {
+                $entityManager->remove($oneOrderLine);
+            }
+            $entityManager->remove($order);
+        }
 
         $entityManager->flush();
         
-        $session = $request->getSession();
-        $session->invalidate();
+        //symfony garde en mémoire l’ancien token d’authentification  
+        // il faudrait le vider pour déconnecter proprement
+        $tokenStorage->setToken(null); 
+        
+        // bonne pratique: invalider la session 
+        // supprimer toutes les variables dans la session
+        $request->getSession()->invalidate();  
+        
         return $this->redirectToRoute('app_login');
     }
 }
