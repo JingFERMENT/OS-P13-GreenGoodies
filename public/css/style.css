@@ -249,7 +249,7 @@ h3 {
     padding: 30px 20px;
     text-decoration: none;
     margin-top: 20px;
-    background-color: #000;
+    background-color: #565656;
     color: white;
     text-align: center;
     border: none;
@@ -257,7 +257,7 @@ h3 {
 }
 
 .add-to-cart:hover {
-    background-color: #565656;
+    background-color: #000;
 }
 
 .Inscription-hero {
@@ -584,8 +584,8 @@ form .btn-register:hover {
     margin-bottom: 40px;
 }
 
-/* 1st box of my account */
-.my-order {
+/* my order */
+.my-order{
     background-color: #FFFDF7;
     max-width: 504px;
     padding: 50px 50px 40px 50px;
@@ -593,7 +593,7 @@ form .btn-register:hover {
     text-align: left;
 }
 
-.my-order h2 {
+.my-order h2, .my-access-API h2 {
     font-size: 14px;
     margin-bottom : 10px;
 }
@@ -637,9 +637,22 @@ td {
   font-weight: 500;
 }
 
-table tbody tr:last-of-type td{
+.my-order-table tbody tr:last-of-type td{
     border-bottom: none;
     padding-bottom: 0px;
+}
+
+/* my API */
+.my-access-API, .delete-my-account {
+    background-color: #FFFDF7;
+    width: 504px;
+    margin-top: 20px;
+    text-align: left;
+    padding: 50px;  
+}
+
+.my-access-API button, .delete-my-account button {
+    width : 100%;
 }
 
 footer p {

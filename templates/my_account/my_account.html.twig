@@ -6,6 +6,7 @@
 {% block main %}
 	<section class="my-account">
 		<h1>Mon compte</h1>
+		{# Mes commandes #}
 		<div class="my-order">
 			<h2>Mes commandes</h2>
 			{% if orders is defined and orders is not empty %}
@@ -31,5 +32,15 @@
 				</tbody>
 			</table>
 		</div>
+		{# Mes accès API #}
+		<div class="my-access-API">
+			<h2>Mon accès API</h2>
+			<button class="add-to-cart">Activer mon accès API</button>
+		</div>
+
+		<div class="delete-my-account">
+			<button class="add-to-cart">Supprimer mon compte</button>
+		</div>
+		{# Suppression du compte #}
 	</section>
 {% endblock %}
