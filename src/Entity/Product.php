@@ -23,24 +23,13 @@ class Product
     private ?string $picture = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $price = null;
+    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $shortDescription = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $longDescription = null;
-
-    /**
-     * @var Collection<int, OrderLine>
-     */
-    #[ORM\OneToMany(targetEntity: OrderLine::class, mappedBy: 'product', orphanRemoval: true)]
-    private Collection $orderLines;
-
-    public function __construct()
-    {
-        $this->orderLines = new ArrayCollection();
-    }
+    private ?string $fullDescription = null;
 
     public function getId(): ?int
     {
@@ -71,12 +60,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): static
+    public function setPrice(float $price): static
     {
         $this->price = $price;
 
@@ -95,44 +84,14 @@ class Product
         return $this;
     }
 
-    public function getLongDescription(): ?string
+    public function getFullDescription(): ?string
     {
-        return $this->longDescription;
+        return $this->fullDescription;
     }
 
-    public function setLongDescription(string $longDescription): static
+    public function setFullDescription(string $fullDescription): static
     {
-        $this->longDescription = $longDescription;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, OrderLine>
-     */
-    public function getOrderLines(): Collection
-    {
-        return $this->orderLines;
-    }
-
-    public function addOrderLine(OrderLine $orderLine): static
-    {
-        if (!$this->orderLines->contains($orderLine)) {
-            $this->orderLines->add($orderLine);
-            $orderLine->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrderLine(OrderLine $orderLine): static
-    {
-        if ($this->orderLines->removeElement($orderLine)) {
-            // set the owning side to null (unless already changed)
-            if ($orderLine->getProduct() === $this) {
-                $orderLine->setProduct(null);
-            }
-        }
+        $this->fullDescription = $fullDescription;
 
         return $this;
     }
