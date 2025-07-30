@@ -11,32 +11,38 @@
 		<div class="my-order">
 			<h2>Mes commandes</h2>
 			{% if orders is defined and orders is not empty %}
-			<table class="my-order-table">
-				<thead>
-					<tr>
-						<th>N°</th>
-						<th>Date</th>
-						<th>Prix</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for order in orders %}
-					<tr>
-						<td>{{order.id}}</td>
-						<td>{{order.createdAt|date('d/m/Y')}}</td>
-						<td>{{order.paidPrice|number_format(2, ',', ' ')}}€</td>
-					</tr>
-				{% endfor %}
-				{% else %}
-				<p>Votre commande est vide.</p>
-				{% endif %}
+				<table class="my-order-table">
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Date</th>
+							<th>Prix</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in orders %}
+							<tr>
+								<td>{{order.id}}</td>
+								<td>{{order.createdAt|date('d/m/Y')}}</td>
+								<td>{{order.paidPrice|number_format(2, ',', ' ')}}€</td>
+							</tr>
+						{% endfor %}
+					{% else %}
+						<p>Votre commande est vide.</p>
+					{% endif %}
 				</tbody>
 			</table>
 		</div>
 		{# Mes accès API #}
 		<div class="my-access-API">
 			<h2>Mon accès API</h2>
-			<a href="#" class="add-to-cart">Activer mon accès API</a>
+			<form action={{ path('app_activate_api')}} method="POST">
+				{% if app.user and app.user.activatedAPI %}
+					<button type="submit" class="api-access">Désactiver mon accès API</a>
+				{% else %}
+					<button type="submit" class="api-access">Activer mon accès API</a>
+				{% endif %}
+			</form>
 		</div>
 
 		<div class="delete-my-account">

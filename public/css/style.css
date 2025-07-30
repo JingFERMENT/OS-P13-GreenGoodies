@@ -540,7 +540,7 @@ form .btn-register:hover {
     text-align: center;
 }
 
-.validate-order:hover {
+.validate-order:hover , .api-access:hover {
     background-color: #000;
 }
 
@@ -651,6 +651,20 @@ td {
     margin-top: 20px;
     text-align: left;
     padding: 50px;  
+}
+
+.api-access {
+    width: 100%;
+    display: inline-block;
+    padding: 30px 20px;
+    text-decoration: none;
+    margin-top: 20px;
+    background-color: #565656;
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 footer p {
