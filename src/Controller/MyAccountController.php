@@ -19,9 +19,10 @@ final class MyAccountController extends AbstractController
     // Display all the details of the user's account
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/my-account', name: 'app_my_account')]
-    public function showAccount(OrderRepository $orderRepository): Response
+    public function showAccount(OrderRepository $orderRepository, Security $security): Response
     {
-        $orders = $orderRepository->findAll();
+        $user = $security->getUser();
+        $orders = $orderRepository->findByUser($user);
 
         return $this->render('my_account/my_account.html.twig', [
             'orders' => $orders,

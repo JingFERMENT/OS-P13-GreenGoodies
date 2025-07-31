@@ -3,7 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
+use App\Exception\ApiAccessException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -14,15 +14,13 @@ class UserChecker implements UserCheckerInterface
     {
         if (!$user instanceof User) {
             return;
-        }
-
-        if(!$user->isActivatedAPI()){
-            throw new CustomUserMessageAccountStatusException('Accès API non activé');
-        }
+        }    
     }
 
     public function checkPostAuth(UserInterface $user): void
     {
-        
+         if(!$user->isActivatedAPI()){
+            throw new ApiAccessException('Merci d\'activer votre accès API!');
+        }
     }
 }

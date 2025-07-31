@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartService
 {
@@ -21,7 +20,6 @@ class CartService
     {
         // Logic to add the product to the cart with the specified quantity
         $cart = $this->session->get('cart', []);
-
 
         $productId = $product->getId();
         $this->remove($product);
@@ -41,6 +39,8 @@ class CartService
     {
         $cart = $this->getCart();
         $cartDetails = [];
+
+        // $user = $security->getUser();
 
         foreach ($cart as $productID => $quantity) {
             $product = $productRepository->find($productID);

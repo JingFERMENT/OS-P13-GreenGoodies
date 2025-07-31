@@ -40,11 +40,12 @@ security:
                 check_path: /api/login
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-        
+
         api:
             pattern: ^/api
             stateless: true
-            jwt: ~      
+            jwt: ~   
+            user_checker: App\Security\UserChecker   
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

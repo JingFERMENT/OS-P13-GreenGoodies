@@ -4,15 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderLine;
-use App\Entity\Product;
-use App\Form\CartQuantityFormType;
 use App\Repository\ProductRepository;
 use App\Service\CartService;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -21,8 +17,11 @@ final class CartController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/cart', name: 'app_cart')]
-    public function showCart(CartService $cartService, ProductRepository $productRepository): Response
+    public function showCart(Security $security, CartService $cartService, ProductRepository $productRepository): Response
     {
+
+        $user = $security->getUser();
+        
         $cartDetails = $cartService->getCartDetails($productRepository);
        
         $totalPrice = $cartService->getTotalPrice($productRepository);
