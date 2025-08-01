@@ -37,8 +37,8 @@
 					</a>
 				</div>
 				<nav class="nav-links">
-					<a href={{ path('app_home') }}#products>Nos produits</a>
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a href={{ path('app_home') }}#products>Nos produits</a>
 					<a href={{ path('app_cart') }}>Mon panier</a>
 					<a href={{ path('app_my_account') }}>Mon compte</a>
 					<a href={{ path("app_logout") }}>Déconnexion</a>
