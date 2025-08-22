@@ -18,7 +18,6 @@
 
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					{{ form_start(cartQuantityForm, {
-					action: path('app_product', {id: product.id}),
 					'attr': 
 					{'novalidate': 'novalidate',
 					'class': 'quantity-form'}}) }}

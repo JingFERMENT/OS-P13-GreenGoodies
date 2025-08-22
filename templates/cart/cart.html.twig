@@ -11,13 +11,13 @@
 			{% if cartWithQuantity is not empty %}
 				<div class="empty-cart">
 					<a href="{{path('app_clear_cart')}}">x</a>
-					<span>Vider le panier</span>
+					<a href="{{path('app_clear_cart')}}">Vider le panier</a>
 				</div>
 			{% endif %}
 
 			{% for oneCart in cartWithQuantity %}
 				<div class="cart-product">
-					<a href={{path('app_product', { id: oneCart['product'].id }) }}><img class="cart-image" src="{{ asset('img/'~oneCart['product'].picture)}}" alt="{{ oneCart['product'].name}}"></a>
+					<a href={{path('app_product', { id: oneCart['product'].id } ) }}><img class="cart-image" src="{{ asset('img/'~oneCart['product'].picture)}}" alt="{{ oneCart['product'].name}}"></a>
 					<div class="product-resume">
 						<p class="product-name">{{ oneCart['product'].name}}</p>
 						<p class="quantity">Quantité :
@@ -36,7 +36,9 @@
 				<p>Frais de livraison : Offert</p>
 			</div>
 			<div class="cart-footer">
-				<a href="{{path('app_validate_cart')}}" class="validate-order">Valider la commande</a>
+				{{ form_start(validateCartForm, {'action': path('app_validate_cart')}) }}
+				{{ form_widget(validateCartForm) }}
+				{{ form_end(validateCartForm) }}
 			</div>
 		{% else %}
 			<p class="cart-is-empty-text">Votre panier est vide.</p>
