@@ -18,21 +18,25 @@ use Symfony\Contracts\Cache\TagAwareCacheInterface;
 final class ApiController extends AbstractController
 {
     #[Route('/api/products', name: 'app_api_products', methods: ['GET'])]
-    public function getAllProducts(ProductRepository $productRepository, 
-    SerializerInterface $serializer,Request $request,
-    TagAwareCacheInterface $cachePool): JsonResponse
-    {
+    public function getAllProducts(
+        ProductRepository $productRepository,
+        SerializerInterface $serializer,
+        Request $request,
+        TagAwareCacheInterface $cachePool
+    ): JsonResponse {
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 3);
 
-        $idCache = 'getAllProducts-'.$page.'-'.$limit;
-        
-        $products = $cachePool->get($idCache, 
-        
-        function(ItemInterface $item) use ($productRepository, $page, $limit) {
-            $item->tag("booksCache");
-            return $productRepository->findAllWithPagination($page, $limit);
-        });
+        $idCache = 'getAllProducts-' . $page . '-' . $limit;
+
+        $products = $cachePool->get(
+            $idCache,
+
+            function (ItemInterface $item) use ($productRepository, $page, $limit) {
+                $item->tag("booksCache");
+                return $productRepository->findAllWithPagination($page, $limit);
+            }
+        );
 
         $jsonProducts = $serializer->serialize($products, 'json');
 
@@ -42,23 +46,5 @@ final class ApiController extends AbstractController
             [],
             true
         );
-    }
-
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    #[Route('/activateApi', name: 'app_activate_api', methods: ['POST'])]
-    public function activateApi(Security $security, 
-    EntityManagerInterface $entityManager): Response
-    {
-        $user = $security->getUser();
-
-        if ($user->isActivatedAPI()) {
-            $user->setIsActivatedAPI(false);
-        } else {
-            $user->setIsActivatedAPI(true);
-        };
-
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_my_account');
     }
 }

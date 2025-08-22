@@ -530,14 +530,12 @@ form .btn-register:hover {
 }
 
 .validate-order {
-    text-decoration: none;
     width: 100%;
-    max-width: 440px;
     color: #fff;
     background-color: #565656;
     padding: 30px;
     margin-top: 30px;
-    text-align: center;
+    border: none;
 }
 
 .validate-order:hover , .api-access:hover {
@@ -550,9 +548,7 @@ form .btn-register:hover {
 }
 
 .cart-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    min-width: 450px;
 }
 
 .flash-message.success {

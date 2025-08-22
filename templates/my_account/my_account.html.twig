@@ -36,13 +36,14 @@
 		{# Mes accès API #}
 		<div class="my-access-API">
 			<h2>Mon accès API</h2>
-			<form action={{ path('app_activate_api')}} method="POST">
-				{% if app.user and app.user.activatedAPI %}
-					<button type="submit" class="api-access">Désactiver mon accès API</a>
-				{% else %}
-					<button type="submit" class="api-access">Activer mon accès API</a>
-				{% endif %}
-			</form>
+			{{ form_start(activateApiForm) }}
+			<button type="submit" class="api-access">
+				{{ app.user and app.user.activatedAPI 
+					? 'Désactiver mon accès API' 
+					: 'Activer mon accès API' 
+				}}
+			</button>
+			{{ form_end(activateApiForm) }}
 		</div>
 
 		<div class="delete-my-account">

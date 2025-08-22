@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+
+use App\Form\ActivateAPIFormType;
 use App\Repository\OrderRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -24,8 +24,16 @@ final class MyAccountController extends AbstractController
         $user = $security->getUser();
         $orders = $orderRepository->findByUser($user);
 
+        $form = $this->createForm(\App\Form\ActivateAPIFormType::class, $user, [
+            'action' => $this->generateUrl('app_activate_api'),
+            'method' => 'POST',
+        ]);
+
+        // Render the form in the template
+
         return $this->render('my_account/my_account.html.twig', [
             'orders' => $orders,
+            'activateApiForm' => $form->createView(),
         ]);
     }
 
@@ -55,15 +63,38 @@ final class MyAccountController extends AbstractController
         }
 
         $entityManager->flush();
-        
+
         //symfony garde en mémoire l’ancien token d’authentification  
         // il faudrait le vider pour déconnecter proprement
-        $tokenStorage->setToken(null); 
-        
+        $tokenStorage->setToken(null);
+
         // bonne pratique: invalider la session 
         // supprimer toutes les variables dans la session
-        $request->getSession()->invalidate();  
-        
+        $request->getSession()->invalidate();
+
         return $this->redirectToRoute('app_login');
+    }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/my-account/api/toggle', name: 'app_activate_api', methods: ['POST'])]
+    public function toggleApi(
+        Security $security,
+        EntityManagerInterface $entityManager,
+        Request $request
+    ): Response {
+
+        $form = $this->createForm(ActivateAPIFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $security->getUser();
+
+            $user->setIsActivatedAPI(!$user->isActivatedAPI());
+            
+            $entityManager->flush();
+             $this->addFlash('success', 'Votre accès API a été mis à jour.');
+        }
+
+        return $this->redirectToRoute('app_my_account');
     }
 }
