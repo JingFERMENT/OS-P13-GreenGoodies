@@ -7,7 +7,7 @@
 
 {% block main %}
 	<section class="product-details-block">
-		<img src="{{ asset('img/'~product.picture) }}" alt="{{ product.name }}" class="product-details-image">
+		<img src="{{ asset('img/'~product.picture |replace({'.jpg': '.webp'})) }}" alt="{{ product.name }}" class="product-details-image">
 		<div class="product-details">
 			<div class="product-texts">
 				<h1>{{ product.name }}</h1>
