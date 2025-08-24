@@ -17,7 +17,7 @@
 
 			{% for oneCart in cartWithQuantity %}
 				<div class="cart-product">
-					<a href={{path('app_product', { id: oneCart['product'].id } ) }}><img class="cart-image" src="{{ asset('img/'~oneCart['product'].picture)}}" alt="{{ oneCart['product'].name}}"></a>
+					<a href={{path('app_product', { id: oneCart['product'].id } ) }}><img class="cart-image" src="{{ asset('img/'~oneCart['product'].picture |replace({'.jpg': '.webp'}))}}" alt="{{ oneCart['product'].name}}"></a>
 					<div class="product-resume">
 						<p class="product-name">{{ oneCart['product'].name}}</p>
 						<p class="quantity">Quantité :
