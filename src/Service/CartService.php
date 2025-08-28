@@ -18,7 +18,7 @@ class CartService
 
     public function add(Product $product, int $quantity): void
     {
-        // Logic to add the product to the cart with the specified quantity
+        // add the product to the cart with the specified quantity
         $cart = $this->session->get('cart', []);
 
         $productId = $product->getId();
@@ -31,7 +31,7 @@ class CartService
 
     public function getCart(): array
     {
-        // Logic to retrieve the current cart contents
+        // retrieve the current cart contents
         return $this->session->get('cart', []);
     }
 

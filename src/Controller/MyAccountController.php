@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Form\ActivateAPIFormType;
 use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;

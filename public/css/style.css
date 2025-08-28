@@ -269,9 +269,14 @@ header {
     cursor: pointer;
     font-size: 14px;
     text-decoration: none;
+    box-sizing: border-box;
 }
 
-.add-to-cart:hover,
+.delete-account-button {
+    margin-top: 0;
+}
+
+.delete-account-button:hover, .add-to-cart:hover,
 .validate-order:hover,
 .api-access:hover,
 .btn-register:hover {

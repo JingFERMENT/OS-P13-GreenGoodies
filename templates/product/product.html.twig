@@ -25,7 +25,7 @@
 						{{ form_row(cartQuantityForm.quantity) }}
 					</div>
 					<button type="submit" class="add-to-cart">
-						{% if cart[product.id] is defined %}
+						{% if cart[product.id] is defined and cart[product.id] > 0 %}
 							Mettre à jour le panier
 						{% else %}
 							Ajouter au panier
