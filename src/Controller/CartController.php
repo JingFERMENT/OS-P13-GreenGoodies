@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderLine;
+use App\Entity\Product;
 use App\Form\ValidateCartFormType;
 use App\Repository\ProductRepository;
 use App\Service\CartService;
@@ -45,7 +46,17 @@ final class CartController extends AbstractController
     public function clearCart(CartService $cartService): Response
     {
         $cartService->clear();
+        $this->addFlash('success', 'Le panier a été vidé avec succès !');
         return $this->redirectToRoute('app_home');
+    }
+
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    #[Route('/remove-cart/{id}', name: 'app_remove_cart')]
+    public function removeCart(CartService $cartService, Product $product): Response
+    {
+        $cartService->remove($product);
+         $this->addFlash('success', 'Le produit a été supprimé du panier avec succès !');
+        return $this->redirectToRoute('app_cart');
     }
 
     #[IsGranted('IS_AUTHENTICATED_FULLY')]

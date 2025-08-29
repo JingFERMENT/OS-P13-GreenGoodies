@@ -452,7 +452,14 @@ form .form-group label {
     gap: 5px;
 }
 
-.empty-cart a {
+.delete-a-product {
+ display: flex;
+ align-items: end;
+    color: #666;
+    gap: 5px;
+}
+
+.empty-cart a, .delete-a-product a {
     text-decoration: none;
     color: #666;
 }
@@ -530,6 +537,8 @@ form .form-group label {
     border-radius: 4px;
     text-align: center;
 }
+
+
 
 /* My Order + API */
 .my-order,

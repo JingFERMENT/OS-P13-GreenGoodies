@@ -18,20 +18,20 @@ class CartService
 
     public function add(Product $product, int $quantity): void
     {
-        // add the product to the cart with the specified quantity
         $cart = $this->session->get('cart', []);
 
         $productId = $product->getId();
-        $this->remove($product);
 
-        $cart[$productId] = $quantity; // Add new product to cart
+        $this->remove($product); // To avoid duplicates
 
-        $this->session->set('cart', $cart);
+        $cart[$productId] = $quantity; // Add product with quantity
+
+        $this->session->set('cart', $cart); // store the cart in the session
     }
 
     public function getCart(): array
     {
-        // retrieve the current cart contents
+        // retrieve the current cart 
         return $this->session->get('cart', []);
     }
 
@@ -39,8 +39,6 @@ class CartService
     {
         $cart = $this->getCart();
         $cartDetails = [];
-
-        // $user = $security->getUser();
 
         foreach ($cart as $productID => $quantity) {
             $product = $productRepository->find($productID);
@@ -71,19 +69,17 @@ class CartService
 
     public function remove(Product $product): void
     {
-        // Logic to remove the product from the cart
-        $cart = $this->session->get('cart', []);
+        $cart = $this->getCart();
         $productId = $product->getId();
 
         if (isset($cart[$productId])) {
-            unset($cart[$productId]); // Remove product from cart
+            unset($cart[$productId]); 
             $this->session->set('cart', $cart);
         }
     }
 
     public function clear(): void
     {
-        // Logic to clear the cart
-        $this->session->remove('cart');
+        $this->session->remove('cart'); 
     }
 }

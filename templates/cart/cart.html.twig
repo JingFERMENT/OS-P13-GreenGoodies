@@ -21,8 +21,12 @@
 					<div class="product-resume">
 						<p class="product-name">{{ oneCart['product'].name}}</p>
 						<p class="quantity">Quantité :
-							{{oneCart.quantity}}</p>
-						<p class="product-price">{{oneCart.totalPriceOfOneProduct|number_format(2, ',', ' ')}}€</p>
+							{{oneCart['quantity']}}</p>
+						<p class="product-price">{{oneCart['totalPriceOfOneProduct']|number_format(2, ',', ' ')}}€</p>
+						<div class="delete-a-product">
+							<a href="{{path('app_remove_cart', {id : oneCart['product'].id})}}">🗑️</a>
+							<a href="{{path('app_remove_cart', {id : oneCart['product'].id})}}">Supprimer</a>
+						</div>
 					</div>
 				</div>
 			{% endfor %}
