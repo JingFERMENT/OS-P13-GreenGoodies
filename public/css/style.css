@@ -446,15 +446,8 @@ form .form-group label {
     width: 100%;
 }
 
-.empty-cart {
+.empty-cart, .delete-a-product {
     display: flex;
-    color: #666;
-    gap: 5px;
-}
-
-.delete-a-product {
- display: flex;
- align-items: end;
     color: #666;
     gap: 5px;
 }
