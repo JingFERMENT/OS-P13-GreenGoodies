@@ -20,19 +20,6 @@ class CartQuantityFormType extends AbstractType
                 'required' => true,
                 'attr' => ['class' => 'quantity-dropdown'],
             ]);
-
-        // This solves the issue by using "data => 0" to reset the dropdown 
-        //  to 0, even if the user had previously selected another value
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function ($event) {
-            $orderLine = $event->getData();
-            if (!$orderLine) {
-                return;
-            }
-
-            if ($orderLine->getQuantity() === null) {
-                $orderLine->setQuantity(0);
-            };
-        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

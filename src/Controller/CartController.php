@@ -16,22 +16,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 final class CartController extends AbstractController
 {
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    // injection par constructeur
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private CartService $cartService,
+        private ProductRepository $productRepository)
+    {  
+    }
+    
     #[Route('/cart', name: 'app_cart')]
     public function showCart(
-        Security $security,
-        CartService $cartService,
-        ProductRepository $productRepository,
     ): Response {
 
-        $user = $security->getUser();
-
-        $cartDetails = $cartService->getCartDetails($productRepository);
-
-        $totalPrice = $cartService->getTotalPrice($productRepository);
-
+        $cartDetails = $this->cartService->getCartDetails($this->productRepository);
+        $totalPrice = $this->cartService->getTotalPrice($this->productRepository);
         $form = $this->createForm(ValidateCartFormType::class);
 
         return $this->render('cart/cart.html.twig', [
@@ -41,43 +42,35 @@ final class CartController extends AbstractController
         ]);
     }
 
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/clear-cart', name: 'app_clear_cart')]
-    public function clearCart(CartService $cartService): Response
+    public function clearCart(): Response
     {
-        $cartService->clear();
+        $this->cartService->clear();
         $this->addFlash('success', 'Le panier a été vidé avec succès !');
+        
         return $this->redirectToRoute('app_home');
     }
 
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/remove-cart/{id}', name: 'app_remove_cart')]
-    public function removeCart(CartService $cartService, Product $product): Response
+    public function removeCart(Product $product): Response
     {
-        $cartService->remove($product);
-         $this->addFlash('success', 'Le produit a été supprimé du panier avec succès !');
+        $this->cartService->remove($product);
+        $this->addFlash('success', 'Le produit a été supprimé du panier !');
+        
         return $this->redirectToRoute('app_cart');
     }
 
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/validate-cart', name: 'app_validate_cart')]
     public function validateCart(
-        CartService $cartService,
-        ProductRepository $productrepository,
-        Security $security,
-        EntityManagerInterface $entityManager,
         Request $request,
     ): Response {
 
-        $user = $security->getUser();
-
-        $cartDetails = $cartService->getCartDetails($productrepository);
-
-        $totalPrice = $cartService->getTotalPrice($productrepository);
+        $cartDetails = $this->cartService->getCartDetails($this->productRepository);
+        $totalPrice = $this->cartService->getTotalPrice($this->productRepository);
 
         // create a new order 
         $order = new Order();
-        $order->setUser($user);
+        $order->setUser($this->getUser());
         $order->setPaidPrice($totalPrice);
         $order->setCreatedAt(new \DateTimeImmutable());
 
@@ -85,7 +78,7 @@ final class CartController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($order);
+            $this->entityManager->persist($order);
 
             // create a new orderline
             foreach ($cartDetails as $oneCart) {
@@ -94,13 +87,12 @@ final class CartController extends AbstractController
                 $orderline->setProduct($oneCart['product']);
                 $orderline->setQuantity($oneCart['quantity']);
 
-                $entityManager->persist($orderline);
+                $this->entityManager->persist($orderline);
             }
 
             // save all to DB
-            $entityManager->flush();
-
-            $cartService->clear();
+            $this->entityManager->flush();
+            $this->cartService->clear();
 
             $this->addFlash('success', 'Votre commande a été validée avec succès !');
 

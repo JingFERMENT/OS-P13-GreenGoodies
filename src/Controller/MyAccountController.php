@@ -13,10 +13,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 final class MyAccountController extends AbstractController
 {
     // Display all the details of the user's account
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/my-account', name: 'app_my_account')]
     public function showAccount(OrderRepository $orderRepository, Security $security): Response
     {
@@ -38,7 +38,6 @@ final class MyAccountController extends AbstractController
 
 
     // Delete the account 
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/delete-my-account', name: 'app_delete_my_account')]
     public function deleteAccount(
         Request $request,
@@ -74,7 +73,6 @@ final class MyAccountController extends AbstractController
         return $this->redirectToRoute('app_login');
     }
 
-    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/my-account/api/toggle', name: 'app_activate_api', methods: ['POST'])]
     public function toggleApi(
         Security $security,
