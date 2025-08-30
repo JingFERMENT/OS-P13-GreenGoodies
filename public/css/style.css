@@ -45,6 +45,14 @@ header {
     color: #333;
 }
 
+.hamburger {
+    display: none;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 /* Welcome Block */
 .welcome-block {
     display: flex;
@@ -200,6 +208,7 @@ header {
 .product-details-block h1 {
     font-size: 20px;
     font-weight: 500;
+    color: #333;
 }
 
 .product-details-block h3 {
@@ -211,6 +220,7 @@ header {
     font-size: 30px;
     font-weight: 300;
     margin-top: 0;
+    color: #333;
 }
 
 .product-details-image {
@@ -595,6 +605,7 @@ footer p {
     border: 1px solid #f6f5f0;
 }
 
+/* mini tablettes */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     header {
         padding: 30px;
@@ -625,19 +636,23 @@ footer p {
         max-height: 370px;
     }
 
-     .section-texts {
+    .section-texts {
         width: 33%;
         padding: 35px;
     }
 
-    .Inscription-hero-text, .connexion-hero-text {
+    .Inscription-hero-text,
+    .connexion-hero-text {
         padding: 0 40px;
+    }
+
+    .product-details {
+        padding: 70px 70px 0px 70px;
     }
 }
 
+/* tablettes */
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
-
-
     .product-card {
         height: 670px;
     }
@@ -649,5 +664,176 @@ footer p {
     .section-texts {
         width: 33%;
         padding: 35px;
+    }
+}
+
+/* mobiles */
+@media only screen and (max-width: 767px) {
+    header.navbar {
+        padding: 15px 20px;
+    }
+
+    /* Hide nav by default on mobile */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #fffdf7;
+        border: 1px solid #f6f5f0;
+        padding: 15px;
+        gap: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links a {
+        margin: 0 10px 0 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .welcome-block {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+    }
+
+    .welcome-left {
+        width: 100%;
+        padding: 50px;
+    }
+
+    .welcome-text-wrapper {
+        width: 80%;
+    }
+
+    .welcome-text-wrapper h1 {
+        font-size: 2rem;
+    }
+
+    .welcome-text-wrapper p {
+        font-size: 1rem;
+    }
+
+    .welcome-block-image {
+        width: 100%;
+        height: 400px;
+    }
+
+    .product-card {
+        width: 100%;
+        height: 580px;
+    }
+
+    .product-image {
+        max-height: 350px;
+    }
+
+    .conviction-block {
+        flex-direction: column;
+    }
+
+    .section-texts {
+        width: 80%;
+        padding: 50px;
+    }
+
+    .section-image {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+    }
+
+    .value-block {
+        flex-direction: column-reverse;
+    }
+
+    footer p {
+        padding: 10px 60px;
+    }
+
+    .product-details-block {
+        flex-direction: column;
+        max-height: none;
+    }
+
+    .product-details-image {
+        width: 100%;
+        height: 350px;
+    }
+
+    .product-details {
+        padding: 30px 20px 0px 20px;
+    }
+
+    .my-order,
+    .my-access-API,
+    .delete-my-account {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .my-account {
+        padding: 20px 0 50px;
+    }
+
+    .my-order-table {
+        width: 95%;
+    }
+
+    .my-cart {
+        padding: 20px 0 20px;
+    }
+
+    .my-cart h1 {
+        margin-bottom: 0px;
+    }
+
+    .cart-product {
+        margin:10px 0 5px;
+        padding: 20px;
+    }
+
+    .empty-cart {
+        padding: 15px 0 0 15px;
+    }
+
+    .delete-a-product {
+        padding: 0px;
+    }
+
+    .cart-image {
+        width: 160px;
+        height:160px;
+    }
+
+    .cart-body {
+        width: 80%;
+    }
+
+    .cart-footer {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .Inscription-hero-cover, .connexion-hero-cover {
+        display: none;
+    }
+
+    .Inscription-hero-text, .connexion-hero-text {
+        width: 100%;
+        margin: 0px 0 50px 0;
+        /* margin-bottom: 50px; */
+    }
+
+    .form-wrapper {
+        width: 90%;
     }
 }
