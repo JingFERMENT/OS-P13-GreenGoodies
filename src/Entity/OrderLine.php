@@ -15,7 +15,7 @@ class OrderLine
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Assert\Range(min: 0, max: 10)]
+    #[Assert\Range(min: 0, max: 5)]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderLines')]
