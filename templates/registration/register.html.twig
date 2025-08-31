@@ -12,37 +12,47 @@
 				<span class="inscription-criteria">Tous les champs sont obligatoires.</span>
 
 				{{ form_errors(registrationForm) }}
-				{{ form_start(registrationForm, {'attr': 
+				{{ form_start(registrationForm, {
+					'attr': 
 					{'novalidate': 'novalidate',
-					'class': 'registration-form'}}) }}
+					'class': 'registration-form',
+					'id': 'registration-form'
+					}
+					}) 
+				}}
 				<div class="form-group">
 					{{ form_label(registrationForm.lastname) }}
 					{{ form_widget(registrationForm.lastname) }}
 					{{ form_errors(registrationForm.lastname) }}
+					<small class="error-message" id="lastname-error"></small>
 				</div>
 
 				<div class="form-group">
 					{{ form_label(registrationForm.firstname) }}
 					{{ form_widget(registrationForm.firstname) }}
 					{{ form_errors(registrationForm.firstname) }}
+					<small class="error-message" id="firstname-error"></small>
 				</div>
 
 				<div class="form-group">
 					{{ form_label(registrationForm.email) }}
 					{{ form_widget(registrationForm.email) }}
 					{{ form_errors(registrationForm.email) }}
+					<small class="error-message" id="email-error"></small>
 				</div>
 
 				<div class="form-group">
 					{{ form_label(registrationForm.plainPassword.first) }}
 					{{ form_widget(registrationForm.plainPassword.first) }}
 					{{ form_errors(registrationForm.plainPassword.first) }}
+					<small class="error-message" id="password-error"></small>
 				</div>
 
 				<div class="form-group">
 					{{ form_label(registrationForm.plainPassword.second) }}
 					{{ form_widget(registrationForm.plainPassword.second) }}
 					{{ form_errors(registrationForm.plainPassword.second) }}
+					<small class="error-message" id="confirm-password-error"></small>
 				</div>
 
 				<div>
@@ -50,6 +60,7 @@
 						{{ form_widget(registrationForm.isAcceptedCGU, {'attr': {'class': 'custom-checkbox'}}) }}
 						{{ form_label(registrationForm.isAcceptedCGU) }}
 					</div>
+					<small class="error-message" id="cgu-error"></small>
 					{{ form_errors(registrationForm.isAcceptedCGU) }}
 				</div>
 

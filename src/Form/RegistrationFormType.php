@@ -31,35 +31,17 @@ class RegistrationFormType extends AbstractType
             ->add('isAcceptedCGU', CheckboxType::class, [
                 'mapped' => true,
                 'label' => 'J’accepte les CGU de GreenGoodies',
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Veuillez accpeter nos conditions générales.',
-                    ]),
-                ],
             ])
             ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,  
+                'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'Mot de passe',
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'label' => 'Mot de passe'
                 ],
                 'second_options' => [
-                    'label' => 'Confirmer mot de passe',
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'label' => 'Confirmer mot de passe'
                 ],
                 'mapped' => false,
-                 'invalid_message' => 'Les mots de passe doivent correspondre.',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Merci de saisir un mot de passe.',
-                    ]),
-                    new Length([
-                        'min' => 8,
-                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
+                'invalid_message' => 'Les mots de passe doivent correspondre.'
             ])
         ;
     }

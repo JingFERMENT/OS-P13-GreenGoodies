@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $lastname = null;
 
     #[ORM\Column(length: 180)]
-     #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
     #[Assert\Email(
         message: "Votre email '{{ value }}' est invalide",
         mode: "strict"
@@ -67,6 +67,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[Assert\NotBlank(message: "Merci de saisir un mot de passe.")]
+    #[Assert\Length(
+        min: 8,
+        minMessage: "Votre mot de passe doit contenir au moins {{ limit }} caractères.",
+        max: 4096
+    )]
+    private ?string $plainPassword = null;
+
     /**
      * @var string The hashed password
      */
@@ -74,12 +82,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
+    #[Assert\IsTrue(message: "Veuillez accepter nos conditions générales.")]
     private bool $isAcceptedCGU = false;
 
     #[ORM\Column]
     private bool $isActivatedAPI = false;
 
-     /**
+    /**
      * @var Collection<int, Order>
      */
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user', cascade: ['remove'], orphanRemoval: true)]
@@ -95,7 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-     public function getFirstname(): ?string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -245,6 +254,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of plainPassword
+     */
+    public function getPlainPassword(): ?String
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set the value of plainPassword
+     *
+     * @return  self
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
