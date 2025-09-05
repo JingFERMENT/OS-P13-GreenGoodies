@@ -16,20 +16,31 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted('IS_AUTHENTICATED_FULLY')]
 final class MyAccountController extends AbstractController
 {
+
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager,
+        private OrderRepository $orderRepository,
+        private Security $security,
+        private TokenStorageInterface $tokenStorage
+    )
+    {  
+
+    }
+
     // Display all the details of the user's account
     #[Route('/my-account', name: 'app_my_account')]
-    public function showAccount(OrderRepository $orderRepository, Security $security): Response
+    public function showAccount(): Response
     {
-        $user = $security->getUser();
-        $orders = $orderRepository->findByUser($user);
+        $user = $this->security->getUser();
 
-        $form = $this->createForm(\App\Form\ActivateAPIFormType::class, $user, [
+        $orders = $this->orderRepository->findByUser($user);
+
+        $form = $this->createForm(ActivateAPIFormType::class, $user, [
             'action' => $this->generateUrl('app_activate_api'),
             'method' => 'POST',
         ]);
 
         // Render the form in the template
-
         return $this->render('my_account/my_account.html.twig', [
             'orders' => $orders,
             'activateApiForm' => $form->createView(),
@@ -40,31 +51,28 @@ final class MyAccountController extends AbstractController
     // Delete the account 
     #[Route('/delete-my-account', name: 'app_delete_my_account')]
     public function deleteAccount(
-        Request $request,
-        Security $security,
-        EntityManagerInterface $entityManager,
-        TokenStorageInterface $tokenStorage
+        Request $request  
     ): Response {
 
-        // delete the user
-        $user = $security->getUser();
-        $entityManager->remove($user);
+        $user = $this->security->getUser();
 
         // delete the orders and orderlines
         $orders = $user->getOrders();
 
         foreach ($orders as $order) {
             foreach ($order->getOrderlines() as $oneOrderLine) {
-                $entityManager->remove($oneOrderLine);
+                $this->entityManager->remove($oneOrderLine);
             }
-            $entityManager->remove($order);
+            $this->entityManager->remove($order);
         }
 
-        $entityManager->flush();
+        // delete the user
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
 
         //symfony garde en mémoire l’ancien token d’authentification  
         // il faudrait le vider pour déconnecter proprement
-        $tokenStorage->setToken(null);
+        $this->tokenStorage->setToken(null);
 
         // bonne pratique: invalider la session 
         // supprimer toutes les variables dans la session
@@ -75,8 +83,6 @@ final class MyAccountController extends AbstractController
 
     #[Route('/my-account/api/toggle', name: 'app_activate_api', methods: ['POST'])]
     public function toggleApi(
-        Security $security,
-        EntityManagerInterface $entityManager,
         Request $request
     ): Response {
 
@@ -84,11 +90,11 @@ final class MyAccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $security->getUser();
+            $user = $this->security->getUser();
 
             $user->setIsActivatedAPI(!$user->isActivatedAPI());
             
-            $entityManager->flush();
+            $this->entityManager->flush();
              $this->addFlash('success', 'Votre accès API a été mis à jour.');
         }
 
