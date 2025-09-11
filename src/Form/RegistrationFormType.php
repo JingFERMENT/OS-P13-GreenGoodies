@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +26,7 @@ class RegistrationFormType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
             ])
             ->add('isAcceptedCGU', CheckboxType::class, [
@@ -40,7 +41,7 @@ class RegistrationFormType extends AbstractType
                 'second_options' => [
                     'label' => 'Confirmer mot de passe'
                 ],
-                'mapped' => false,
+                'mapped' => true,
                 'invalid_message' => 'Les mots de passe doivent correspondre.'
             ])
         ;

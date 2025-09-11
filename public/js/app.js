@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordInLoginForm: document.getElementById("password-login-error"),
     };
 
-    function clearError(field) {
-        switch (field.id) {
+    function clearError(fieldId) {
+        switch (fieldId) {
             case "registration_form_firstname":
                 errors.firstname.textContent = "";
                 break;
