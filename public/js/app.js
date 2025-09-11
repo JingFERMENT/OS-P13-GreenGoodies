@@ -72,7 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         switch (field.id) {
             case "registration_form_firstname":
-                if (value.length < 2) {
+                if (value.length === 0) {
+                    errors.firstname.textContent = "Le prénom est obligatoire.";
+                    isValid = false;
+                } else if
+                (value.length < 2) {
                     errors.firstname.textContent =
                         "Le prénom doit avoir au moins 2 caractères.";
                     isValid = false;
@@ -85,7 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             case "registration_form_lastname":
                 const lastnamePattern = /^[A-Z][a-zA-Z'-]+$/;
-                if (value.length < 2) {
+                if (value.length === 0) {
+                    errors.lastname.textContent = "Le nom est obligatoire.";
+                    isValid = false;
+                } else if
+                (value.length < 2) {
                     errors.lastname.textContent =
                         "Le nom doit avoir au moins 2 caractères.";
                     isValid = false;
@@ -115,9 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
 
             case "registration_form_plainPassword_first":
-                if (value.length < 8) {
+                if ( value.length == 0) {
                     errors.registrationPassword.textContent =
-                        "Le mot de passe doit contenir au moins 8 caractères.";
+                        "Merci de saisir un mot de passe.";
+                    isValid = false;
+                } else if ( value.length < 8) {
+                    errors.registrationPassword.textContent =
+                        "Le mot de passe doit contenir au moins 8 caractères &éé.";
                     isValid = false;
                 }
                 break;
@@ -153,7 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
 
             case "password":
-                if (value.length < 8) {
+                if (value.length === 0) {
+                    errors.passwordInLoginForm.textContent =
+                        "Merci de saisir un mot de passe.";
+                    isValid = false;
+                } else if
+                (value.length < 8) {
                     errors.passwordInLoginForm.textContent =
                         "Le mot de passe doit contenir au moins 8 caractères.";
                     isValid = false;
