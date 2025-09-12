@@ -58,3 +58,14 @@ Le projet s’appuie sur les maquettes du designer : [Figma](https://www.figma.c
 ```bash
 git clone https://github.com/JingFERMENT/OS-P13-GreenGoodies.git
 cd OS-P13-GreenGoodies
+
+### Base de données
+
+- Créer une base nommée `greengoodies`
+- Importer le fichier `green_goodies.sql` à la racine du projet
+
+### Installer le backend
+
+```bash
+composer install
+
