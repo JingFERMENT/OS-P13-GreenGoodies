@@ -1,9 +1,9 @@
-# 🌱 GreenGoodies – Site et API
+# GreenGoodies – Site et API
 Projet n°13 – Formation Développeur d’application PHP Symfony @OpenClassrooms
 
 ---
 
-## 📑 Table des matières
+## Table des matières
 - [Contexte](#-contexte)
 - [Fonctionnalités](#-fonctionnalités)
 - [Installation](#-installation)
@@ -11,7 +11,7 @@ Projet n°13 – Formation Développeur d’application PHP Symfony @OpenClassro
 
 ---
 
-## 📄 Contexte
+## Contexte
 
 GreenGoodies est un **site e-commerce responsive** développé avec **Symfony**.  
 Il permet aux utilisateurs de visualiser des produits écologiques, gérer un panier et passer des commandes fictives.
@@ -20,7 +20,7 @@ Le projet s’appuie sur les maquettes du designer : [Figma](https://www.figma.c
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 ### Partie publique
 - Visualisation des produits
@@ -46,7 +46,7 @@ Le projet s’appuie sur les maquettes du designer : [Figma](https://www.figma.c
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### Prérequis
 - PHP >= 8.1
@@ -94,7 +94,7 @@ symfony serve:start
 
 L’application est accessible sur : http://127.0.0.1:8000
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 - Symfony (PHP)
 - Twig
