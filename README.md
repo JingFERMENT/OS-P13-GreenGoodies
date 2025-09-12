@@ -58,6 +58,7 @@ Le projet s’appuie sur les maquettes du designer : [Figma](https://www.figma.c
 ```bash
 git clone https://github.com/JingFERMENT/OS-P13-GreenGoodies.git
 cd OS-P13-GreenGoodies
+```
 
 ### Base de données
 
@@ -68,4 +69,39 @@ cd OS-P13-GreenGoodies
 
 ```bash
 composer install
+```
+
+### Configuration
+
+Créer .env.local et renseigner la variable DATABASE_URL :
+
+```bash
+DATABASE_URL="mysql://user:password@127.0.0.1:3306/greengoodies"
+```
+
+### Migrations et fixtures
+
+```bash
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
+```
+
+### Lancer le serveur
+
+```bash
+symfony serve:start
+```
+
+L’application est accessible sur : http://127.0.0.1:8000
+
+## 🛠️ Technologies utilisées
+
+- Symfony (PHP)
+- Twig
+- MySQL
+- Doctrine ORM
+- Validator / Security / Form (Symfony)
+- LexikJWT
+- Serializer
+- CSS responsive
 
