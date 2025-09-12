@@ -1,3 +1,4 @@
+![GreenGoodies Logo](public/img/logo.svg)
 # GreenGoodies – Site et API
 Projet n°13 – Formation Développeur d’application PHP Symfony @OpenClassrooms
 
