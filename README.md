@@ -61,10 +61,13 @@ git clone https://github.com/JingFERMENT/OS-P13-GreenGoodies.git
 cd OS-P13-GreenGoodies
 ```
 
-### Base de données
+### Base de données & migrations et fixtures
 
-- Créer une base nommée `greengoodies`
-- Importer le fichier `green_goodies.sql` à la racine du projet
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
+```
 
 ### Installer le backend
 
@@ -78,13 +81,6 @@ Créer .env.local et renseigner la variable DATABASE_URL :
 
 ```bash
 DATABASE_URL="mysql://user:password@127.0.0.1:3306/greengoodies"
-```
-
-### Migrations et fixtures
-
-```bash
-php bin/console doctrine:migrations:migrate
-php bin/console doctrine:fixtures:load
 ```
 
 ### Lancer le serveur
